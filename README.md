@@ -1,20 +1,20 @@
 # Modular System for CMangos cores
-This system allows an easy creation of custom code for cmangos cores without the need of touching the core itself. This is done via hooks strategycally placed all across the core which any module can attach to and listen to particular events happening. You can find the list of all available hooks [here](https://github.com/davidonete/cmangos-modules/blob/main/src/Module.h#60)
+This system allows an easy creation of custom code for cmangos cores without the need of touching the core itself. This is done via hooks strategycally placed all across the core which any module can attach to and listen to particular events happening. You can find the list of all available hooks [here](https://github.com/flekz-games/cmangos-modules/blob/main/src/Module.h#60)
 
 # Modules available
 Here is a list of compatible modules that you can install with this system:
-- [Immersive](https://github.com/davidonete/cmangos-immersive) (All cores): A module to make the game feel more immersive by adding multiple features.
-- [Achievements](https://github.com/davidonete/cmangos-achievements) (Classic and TBC): A module to bring the achievement system from WoTLK to earlier versions of the game
-- [Hardcore](https://github.com/davidonete/cmangos-hardcore) (All cores): A module to make the game more challenging
-- [Transmog](https://github.com/davidonete/cmangos-transmog) (All cores): A module to bring the transmog system from Cataclysm to earlier versions of the game
-- [Dual Spec](https://github.com/davidonete/cmangos-dualspec) (Classic and TBC): A module to bring the dual specialization system from WoTLK to earlier versions of the game
+- [Immersive](https://github.com/flekz-games/cmangos-immersive) (All cores): A module to make the game feel more immersive by adding multiple features.
+- [Achievements](https://github.com/flekz-games/cmangos-achievements) (Classic and TBC): A module to bring the achievement system from WoTLK to earlier versions of the game
+- [Hardcore](https://github.com/flekz-games/cmangos-hardcore) (All cores): A module to make the game more challenging
+- [Transmog](https://github.com/flekz-games/cmangos-transmog) (All cores): A module to bring the transmog system from Cataclysm to earlier versions of the game
+- [Dual Spec](https://github.com/flekz-games/cmangos-dualspec) (Classic and TBC): A module to bring the dual specialization system from WoTLK to earlier versions of the game
 - [Boost](https://github.com/celguar/cmangos-boost.git) (TBC): A module to boost a character to be ready to the next expansion
 - [Barber](https://github.com/celguar/cmangos-barber.git) (Classic and TBC): A module to add a barber shop in the capital cities
-- [Training Dummies](https://github.com/davidonete/cmangos-trainingdummies.git) (Classic and TBC): A module to add training dummies in the capital cities
-- [Balancing](https://github.com/davidonete/cmangos-balancing.git) (Classic only): A module to balance classes, modifying and adding new spells to classes
+- [Training Dummies](https://github.com/flekz-games/cmangos-trainingdummies.git) (Classic and TBC): A module to add training dummies in the capital cities
+- [Balancing](https://github.com/flekz-games/cmangos-balancing.git) (Classic only): A module to balance classes, modifying and adding new spells to classes
 - [Paladin power](https://github.com/Redbu11dev/cmangos-paladinpower) (Classic only): A module to give paladins their cut spells back
-- [Classless](https://github.com/davidonete/cmangos-classless) (Classic only): A module to allow a classless game mode
-- [VoiceOver](https://github.com/davidonete/cmangos-voiceover) (Classic only): Module to support working with the VoiceOver (AI generated npc voices) addon
+- [Classless](https://github.com/flekz-games/cmangos-classless) (Classic only): A module to allow a classless game mode
+- [VoiceOver](https://github.com/flekz-games/cmangos-voiceover) (Classic only): Module to support working with the VoiceOver (AI generated npc voices) addon
 
 # How to install
 NOTE: At the moment there is no officially supported way for installing this system using the stock cmangos source code, however we have prepared two options depending on your skills. This guide assumes that you have knowledge on using git repositories and know how to compile using cmake, if not please refer to the [Beginners Guide](https://github.com/cmangos/issues/wiki/Beginners-Guide-Introduction) for more info.
@@ -22,9 +22,9 @@ NOTE: At the moment there is no officially supported way for installing this sys
 ## Use already merged code
 This guide will use the source code where all the module code is already in place and ready to be used, however this source code is not the latest CMangos version and gets synced with the CMangos source code every couple of months.
 1. Follow the guide in the [Installation Instructions](https://github.com/cmangos/issues/wiki/Installation-Instructions) until you reach the [Clone CMangos section](https://github.com/cmangos/issues/wiki/Installation-Instructions#clone-cmangos). Instead of using the stock cmangos repository, use one of the following depending on the core version you want:
-  - Classic: ```git clone https://github.com/davidonete/mangos-classic.git -b modules```
-  - TBC: ```git clone https://github.com/davidonete/mangos-tbc.git -b modules```
-  - WoTLK: ```git clone https://github.com/davidonete/mangos-wotlk.git -b modules```
+  - Classic: ```git clone https://github.com/flekz-games/mangos-classic.git -b modules```
+  - TBC: ```git clone https://github.com/flekz-games/mangos-tbc.git -b modules```
+  - WoTLK: ```git clone https://github.com/flekz-games/mangos-wotlk.git -b modules```
 2.  Once you have it cloned continue following the guide until you reach the [Compiling CMangos section](https://github.com/cmangos/issues/wiki/Installation-Instructions#compiling-cmangos-windows). In this section you will have to define the flags for enabling the module system as well as the individual modules that you want to compile. The flag required for each module can be found on the installation instructions for each module. Example:
 
 ```
@@ -49,8 +49,8 @@ Where `-G "Visual Studio 16 2019"` is the visual studio version you have, `-B bi
 ## Use a patch
 You can patch the latest cmangos core to have the required modules code added on top of it. Be aware that this patches can fail if cmangos changes parts of code that the module system depends on. 
 To apply a patch download one of the following patch files depending on your core version:
-  - Classic: https://github.com/davidonete/cmangos-modules/blob/main/patches/classic.patch
-  - TBC: https://github.com/davidonete/cmangos-modules/blob/main/patches/tbc.patch
+  - Classic: https://github.com/flekz-games/cmangos-modules/blob/main/patches/classic.patch
+  - TBC: https://github.com/flekz-games/cmangos-modules/blob/main/patches/tbc.patch
   - WotLK: TBD
     
 Open the command line and navigate to the core repository and apply the patch with this command
@@ -96,7 +96,7 @@ if(BUILD_MODULES)
 
   FetchContent_Declare(
     modules
-    GIT_REPOSITORY "https://github.com/davidonete/cmangos-modules.git"
+    GIT_REPOSITORY "https://github.com/flekz-games/cmangos-modules.git"
     GIT_TAG "main"
   )
 ```

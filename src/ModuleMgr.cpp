@@ -1236,6 +1236,7 @@ namespace cmangos_module
             if (!cmdPrefix.empty() && !cmdSuffix.empty())
             {
                 WorldSession* session = chatHandler->GetSession();
+                uint32 accessLevel = session ? session->GetSecurity() : SEC_CONSOLE;
                 for (Module* mod : modules)
                 {
                     const char* moduleCommandPrefix = mod->GetChatCommandPrefix();
@@ -1246,7 +1247,7 @@ namespace cmangos_module
                         {
                             for (auto chatCommand : *commandTable)
                             {
-                                if (chatCommand.name == cmdSuffix && session->GetSecurity() >= chatCommand.securityLevel)
+                                if (chatCommand.name == cmdSuffix && accessLevel >= chatCommand.securityLevel)
                                 {
                                     return chatCommand.callback(session, cmdArgs);
                                 }

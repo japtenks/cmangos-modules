@@ -1166,6 +1166,93 @@ namespace cmangos_module
         }
     }
 
+    void ModuleMgr::OnAuctionBidReplaced(AuctionEntry* auctionEntry)
+    {
+        for (Module* mod : modules)
+        {
+            mod->OnAuctionBidReplaced(auctionEntry);
+        }
+    }
+
+    void ModuleMgr::OnAuctionExpiredOrCancelled(AuctionEntry* auctionEntry)
+    {
+        for (Module* mod : modules)
+        {
+            mod->OnAuctionExpiredOrCancelled(auctionEntry);
+        }
+    }
+
+    void ModuleMgr::OnAuctionSaleFinalized(AuctionEntry* auctionEntry)
+    {
+        for (Module* mod : modules)
+        {
+            mod->OnAuctionSaleFinalized(auctionEntry);
+        }
+    }
+
+    void ModuleMgr::OnAhBotAuctionCreated(AuctionEntry* auctionEntry)
+    {
+        for (Module* mod : modules)
+        {
+            mod->OnAhBotAuctionCreated(auctionEntry);
+        }
+    }
+
+    void ModuleMgr::OnAhBotAuctionRemoved(AuctionEntry* auctionEntry)
+    {
+        for (Module* mod : modules)
+        {
+            mod->OnAhBotAuctionRemoved(auctionEntry);
+        }
+    }
+
+    bool ModuleMgr::OnAhBotCreateAuction(AuctionHouseEntry const* auctionHouseEntry, ItemPrototype const* prototype, uint32 desiredCount, uint32 bidPrice, uint32 buyoutPrice, uint32 auctionTime)
+    {
+        for (Module* mod : modules)
+        {
+            if (mod->OnAhBotCreateAuction(auctionHouseEntry, prototype, desiredCount, bidPrice, buyoutPrice, auctionTime))
+                return true;
+        }
+
+        return false;
+    }
+
+    bool ModuleMgr::OnAhBotPlaceBid(AuctionEntry* auctionEntry, uint32 bidPrice)
+    {
+        for (Module* mod : modules)
+        {
+            if (mod->OnAhBotPlaceBid(auctionEntry, bidPrice))
+                return true;
+        }
+
+        return false;
+    }
+
+    bool ModuleMgr::OnAhBotPlaceBuyout(AuctionEntry* auctionEntry)
+    {
+        for (Module* mod : modules)
+        {
+            if (mod->OnAhBotPlaceBuyout(auctionEntry))
+                return true;
+        }
+
+        return false;
+    }
+
+    bool ModuleMgr::IsAhBotAuction(AuctionEntry* auctionEntry)
+    {
+        bool isAhBotAuction = false;
+        for (Module* mod : modules)
+        {
+            if (mod->IsAhBotAuction(auctionEntry))
+            {
+                isAhBotAuction = true;
+            }
+        }
+
+        return isAhBotAuction;
+    }
+
     void ModuleMgr::OnSendMail(const MailDraft& mail, Player* player, const ObjectGuid& receiver, uint32 cost)
     {
         for (Module* mod : modules)

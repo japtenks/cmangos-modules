@@ -28,10 +28,12 @@ class WorldPacket;
 
 struct ActionButton;
 struct AuctionEntry;
+struct AuctionHouseEntry;
 struct FactionEntry;
 struct GossipMenuItems;
 struct LootItem;
 struct Mail;
+struct ItemPrototype;
 struct PlayerLevelInfo;
 struct PlayerClassLevelInfo;
 struct ProcExecutionData;
@@ -342,6 +344,24 @@ namespace cmangos_module
         virtual void OnUpdateBid(AuctionEntry* auctionEntry, Player* player, uint32 newBid) {}
         // Called when a player wins a bid against an auction item
         virtual void OnActionBidWinning(AuctionEntry* auctionEntry, const ObjectGuid& owner, const ObjectGuid& bidder) {}
+        // Called when an existing bidder is replaced by another bidder
+        virtual void OnAuctionBidReplaced(AuctionEntry* auctionEntry) {}
+        // Called when an auction expires or gets cancelled without sale completion
+        virtual void OnAuctionExpiredOrCancelled(AuctionEntry* auctionEntry) {}
+        // Called immediately before the auction sale completes
+        virtual void OnAuctionSaleFinalized(AuctionEntry* auctionEntry) {}
+        // Called after an AHBot auction owned by a bot is created
+        virtual void OnAhBotAuctionCreated(AuctionEntry* auctionEntry) {}
+        // Called immediately before an AHBot auction owned by a bot is removed
+        virtual void OnAhBotAuctionRemoved(AuctionEntry* auctionEntry) {}
+        // Called when AHBot wants a module to create a real-bot-backed auction
+        virtual bool OnAhBotCreateAuction(AuctionHouseEntry const* auctionHouseEntry, ItemPrototype const* prototype, uint32 desiredCount, uint32 bidPrice, uint32 buyoutPrice, uint32 auctionTime) { return false; }
+        // Called when AHBot wants a module to place a bid using a bot buyer
+        virtual bool OnAhBotPlaceBid(AuctionEntry* auctionEntry, uint32 bidPrice) { return false; }
+        // Called when AHBot wants a module to buy out an auction using a bot buyer
+        virtual bool OnAhBotPlaceBuyout(AuctionEntry* auctionEntry) { return false; }
+        // Called when core needs to classify bot-owned auctions created by a module
+        virtual bool IsAhBotAuction(AuctionEntry* auctionEntry) { return false; }
 
         // Mail Hooks
         // Called when a player sends a mail

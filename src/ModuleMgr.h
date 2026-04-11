@@ -29,10 +29,12 @@ class WorldPacket;
 
 struct ActionButton;
 struct AuctionEntry;
+struct AuctionHouseEntry;
 struct FactionEntry;
 struct GossipMenuItems;
 struct LootItem;
 struct Mail;
+struct ItemPrototype;
 struct PlayerClassLevelInfo;
 struct PlayerLevelInfo;
 struct ProcExecutionData;
@@ -195,6 +197,15 @@ namespace cmangos_module
         void OnSellItem(AuctionEntry* auctionEntry, Player* player);
         void OnUpdateBid(AuctionEntry* auctionEntry, Player* player, uint32 newBid);
         void OnActionBidWinning(AuctionEntry* auctionEntry, const ObjectGuid& owner, const ObjectGuid& bidder);
+        void OnAuctionBidReplaced(AuctionEntry* auctionEntry);
+        void OnAuctionExpiredOrCancelled(AuctionEntry* auctionEntry);
+        void OnAuctionSaleFinalized(AuctionEntry* auctionEntry);
+        void OnAhBotAuctionCreated(AuctionEntry* auctionEntry);
+        void OnAhBotAuctionRemoved(AuctionEntry* auctionEntry);
+        bool OnAhBotCreateAuction(AuctionHouseEntry const* auctionHouseEntry, ItemPrototype const* prototype, uint32 desiredCount, uint32 bidPrice, uint32 buyoutPrice, uint32 auctionTime);
+        bool OnAhBotPlaceBid(AuctionEntry* auctionEntry, uint32 bidPrice);
+        bool OnAhBotPlaceBuyout(AuctionEntry* auctionEntry);
+        bool IsAhBotAuction(AuctionEntry* auctionEntry);
 
         // Mail Hooks
         void OnSendMail(const MailDraft& mail, Player* player, const ObjectGuid& receiver, uint32 cost);
